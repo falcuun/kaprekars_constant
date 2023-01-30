@@ -58,18 +58,21 @@ void split_digits(int number)
 		}
 		desc_multiplier /= 10;
 	}
-
-	printf("%d - %d", descended, ascended);
+	printf("%d => (%d - %d)", number, descended, ascended);
 }
 
 int constant_steps = 1;
 
 int calculate_kaprekars(int num)
 {
-	printf("%d => (", num);
 	split_digits(num);
+	if (descended == ascended)
+	{
+		printf("\nNumber cannot consist of 4 same digits.\n");
+		return 0;
+	}
 	int temp = descended - ascended;
-	printf(") = %d\n", temp);
+	printf(" = %d\n", temp);
 	if (temp == KAPREKARS_CONSTANT)
 	{
 		printf("Constant found %d, amount of steps: %d\n", temp, constant_steps);
@@ -83,6 +86,6 @@ int calculate_kaprekars(int num)
 
 int main()
 {
-	calculate_kaprekars(13);
+	calculate_kaprekars(1114);
 	return 0;
 }
